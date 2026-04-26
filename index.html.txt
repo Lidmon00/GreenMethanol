@@ -1,0 +1,541 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GreenMethanol Solutions | O Futuro da Energia Limpa</title>
+
+    <!-- Frameworks & Fonts -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Montserrat:wght@700;800&display=swap" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        green: {
+                            primary: '#00B36E',
+                            light: '#E6F7F0',
+                            dark: '#008C56'
+                        },
+                        deep: {
+                            ocean: '#0A192F',
+                            light: '#172A45',
+                            accent: '#112240'
+                        },
+                        titanium: '#CCD6F6',
+                        slate: '#8892B0'
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        heading: ['Montserrat', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        h1, h2, h3 { font-family: 'Montserrat', sans-serif; }
+        
+        .glass-card {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .gradient-text {
+            background: linear-gradient(135deg, #00B36E 0%, #00F0FF 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero-pattern {
+            background-color: #ffffff;
+            background-image: radial-gradient(#e5e7eb 0.5px, transparent 0.5px);
+            background-size: 24px 24px;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+        .animate-float { animation: float 4s ease-in-out infinite; }
+
+        input[type=range]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            height: 20px;
+            width: 20px;
+            border-radius: 50%;
+            background: #00B36E;
+            cursor: pointer;
+            box-shadow: 0 0 10px rgba(0, 179, 110, 0.5);
+        }
+
+        /* AI Chat Pulse */
+        @keyframes pulse-border {
+            0% { border-color: rgba(0, 179, 110, 0.3); }
+            50% { border-color: rgba(0, 240, 255, 1); }
+            100% { border-color: rgba(0, 179, 110, 0.3); }
+        }
+        .ai-border-pulse { animation: pulse-border 2s infinite; }
+    </style>
+</head>
+
+<body class="bg-slate-50 text-deep-ocean selection:bg-green-light selection:text-green-dark">
+
+    <!-- NAVBAR -->
+    <nav id="navbar" class="fixed w-full z-50 transition-all duration-300 py-4 bg-white/80 backdrop-blur-md border-b border-gray-100">
+        <div class="max-w-7xl mx-auto px-6 flex justify-between items-center">
+            <div class="flex items-center space-x-2 group cursor-pointer" onclick="window.scrollTo(0,0)">
+                <div class="w-10 h-10 bg-green-primary rounded-lg flex items-center justify-center text-white font-bold text-xl overflow-hidden shadow-lg shadow-green-primary/20">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-6 h-6">
+                        <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
+                    </svg>
+                </div>
+                <span class="font-heading font-extrabold text-xl tracking-tight hidden sm:block">
+                    Green<span class="text-green-primary">Methanol</span>
+                </span>
+            </div>
+
+            <div class="hidden md:flex items-center space-x-10 text-sm font-medium text-gray-600">
+                <a href="#tecnologia" class="hover:text-green-primary transition-colors">Tecnologia</a>
+                <a href="#dados" class="hover:text-green-primary transition-colors">Sustentabilidade</a>
+                <a href="#impacto" class="hover:text-green-primary transition-colors">Impacto</a>
+                <a href="#simulador" class="bg-deep-ocean text-white px-5 py-2.5 rounded-full hover:bg-green-primary transition-all shadow-md">
+                    Assessment Técnico
+                </a>
+            </div>
+
+            <button class="md:hidden text-deep-ocean" id="menu-btn">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
+                </svg>
+            </button>
+        </div>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <section class="relative pt-40 pb-24 overflow-hidden hero-pattern">
+        <div class="max-w-7xl mx-auto px-6 relative z-10">
+            <div class="flex flex-col lg:flex-row items-center gap-16">
+                <div class="lg:w-3/5 space-y-8">
+                    <div class="inline-flex items-center space-x-2 bg-green-light px-3 py-1 rounded-full border border-green-200">
+                        <span class="relative flex h-2 w-2">
+                            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-primary opacity-75"></span>
+                            <span class="relative inline-flex rounded-full h-2 w-2 bg-green-primary"></span>
+                        </span>
+                        <span class="text-xs font-bold text-green-dark uppercase tracking-widest">Tecnologia Net-Zero</span>
+                    </div>
+
+                    <h1 class="text-5xl lg:text-7xl font-heading font-extrabold leading-[1.1]">
+                        Transformamos <span class="gradient-text italic">CO₂</span> em energia de alto desempenho.
+                    </h1>
+
+                    <p class="text-xl text-gray-600 leading-relaxed max-w-2xl">
+                        A GreenMethanol Solutions lidera a transição energética global produzindo e-metanol ultra-puro através da captura de carbono e hidrogênio verde. Uma solução drop-in imediata para indústrias e transporte marítimo.
+                    </p>
+
+                    <div class="flex flex-col sm:flex-row gap-4 pt-4">
+                        <a href="#simulador" class="px-8 py-4 bg-green-primary text-white rounded-xl font-bold shadow-xl shadow-green-primary/30 hover:scale-105 transition-transform text-center">
+                            Simular Descarbonização
+                        </a>
+                        <a href="#tecnologia" class="px-8 py-4 bg-white border border-gray-200 text-deep-ocean rounded-xl font-bold hover:bg-gray-50 transition-colors text-center">
+                            Conhecer a Química
+                        </a>
+                    </div>
+                </div>
+
+                <div class="lg:w-2/5 relative">
+                    <div class="relative z-10 bg-white p-8 rounded-3xl shadow-2xl border border-gray-100 animate-float">
+                        <div class="flex justify-between items-center mb-6">
+                            <span class="font-bold text-gray-400 text-sm">PROCESSO QUÍMICO</span>
+                            <span class="bg-blue-100 text-blue-600 text-xs font-bold px-2 py-1 rounded">ISO 14001</span>
+                        </div>
+                        <div class="flex items-center justify-center space-x-4">
+                            <div class="text-center">
+                                <div class="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center font-bold text-gray-500 mb-2">CO₂</div>
+                                <span class="text-xs text-gray-400">Captura</span>
+                            </div>
+                            <div class="text-green-primary text-2xl font-bold">+</div>
+                            <div class="text-center">
+                                <div class="w-16 h-16 bg-blue-50 rounded-full flex items-center justify-center font-bold text-blue-500 mb-2 border border-blue-100">3H₂</div>
+                                <span class="text-xs text-gray-400">Verde</span>
+                            </div>
+                            <div class="text-gray-300 text-2xl">→</div>
+                            <div class="text-center">
+                                <div class="w-20 h-20 bg-green-primary text-white rounded-full flex items-center justify-center font-bold text-xl mb-2 shadow-lg shadow-green-primary/30">CH₃OH</div>
+                                <span class="text-xs font-bold text-green-dark italic">e-Metanol</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="absolute -top-10 -right-10 w-40 h-40 bg-green-light rounded-full mix-blend-multiply opacity-70 filter blur-3xl"></div>
+                    <div class="absolute -bottom-10 -left-10 w-40 h-40 bg-blue-100 rounded-full mix-blend-multiply opacity-70 filter blur-3xl"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- TECNOLOGIA -->
+    <section id="tecnologia" class="py-24 bg-deep-ocean text-white relative">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-heading font-bold mb-4">Engenharia Circular de Carbono</h2>
+                <p class="text-slate max-w-2xl mx-auto text-lg">Nossa síntese térmica elimina a necessidade de fontes fósseis, fechando o ciclo do carbono em um ecossistema industrial regenerativo.</p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="glass-card p-8 rounded-2xl hover:border-green-primary/50 transition-colors group">
+                    <div class="w-12 h-12 bg-white/10 rounded-lg flex items-center justify-center mb-6 text-green-primary group-hover:bg-green-primary group-hover:text-white transition-all">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Captura Direta (DAC)</h3>
+                    <p class="text-slate leading-relaxed">Extraímos CO₂ diretamente de chaminés industriais ou do ar, removendo passivos ambientais e transformando-os em ativos energéticos.</p>
+                </div>
+
+                <div class="glass-card p-8 rounded-2xl border-green-primary/30">
+                    <div class="w-12 h-12 bg-green-primary rounded-lg flex items-center justify-center mb-6 text-white shadow-lg shadow-green-primary/20">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path d="M13 10V3L4 14h7v7l9-11h-7z" />
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Eletrólise Renovável</h3>
+                    <p class="text-slate leading-relaxed">Utilizamos excedente de energia eólica e solar para separar o hidrogênio da água (H₂), garantindo uma base energética 100% livre de emissões.</p>
+                </div>
+
+                <div class="glass-card p-8 rounded-2xl hover:border-green-primary/50 transition-colors group">
+                    <div class="w-12 h-12 bg-white/10 rounded-lg flex items-center justify-center mb-6 text-green-primary group-hover:bg-green-primary group-hover:text-white transition-all">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.642.321a6 6 0 01-3.86.517l-2.388-.477a2 2 0 00-1.022.547l-1.16 1.16a2 2 0 000 2.828l1.16 1.16a2 2 0 001.022.547l2.387.477a6 6 0 003.86-.517l.642-.321a6 6 0 013.86-.517l2.388.477a2 2 0 001.022.547l1.16-1.16a2 2 0 000-2.828l-1.16-1.16z" />
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Reator Catalítico</h3>
+                    <p class="text-slate leading-relaxed">Em alta pressão e com catalisadores de última geração, sintetizamos o combustível líquido que o mundo precisa para descarbonizar o transporte pesado.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- IMPACTO / DADOS -->
+    <section id="dados" class="py-24 bg-white">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="flex flex-col lg:flex-row items-center gap-12">
+                <div class="lg:w-1/2">
+                    <h2 class="text-4xl font-heading font-bold mb-6">Validação Baseada em Dados</h2>
+                    <p class="text-gray-600 text-lg mb-8 leading-relaxed">
+                        Diferente do metanol convencional (derivado do gás natural), nosso e-metanol reduz as emissões de gases de efeito estufa em até <span class="font-bold text-green-primary">95%</span> em uma análise de ciclo de vida "Well-to-Wake".
+                    </p>
+                    
+                    <ul class="space-y-4">
+                        <li class="flex items-start space-x-3 text-gray-700">
+                            <div class="mt-1 text-green-primary"><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"></path></svg></div>
+                            <span>Redução drástica de SOx, NOx e material particulado.</span>
+                        </li>
+                        <li class="flex items-start space-x-3 text-gray-700">
+                            <div class="mt-1 text-green-primary"><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"></path></svg></div>
+                            <span>Logística simplificada: estável em temperatura ambiente.</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="lg:w-1/2 w-full">
+                    <div class="bg-slate-50 p-6 sm:p-10 rounded-3xl border border-gray-100 shadow-xl">
+                        <div class="flex justify-between items-end mb-6">
+                            <h4 class="font-bold text-sm text-gray-400 uppercase tracking-widest">Intensidade de Carbono (gCO2e/MJ)</h4>
+                            <div class="text-right">
+                                <span class="block text-2xl font-bold text-deep-ocean">-95%</span>
+                                <span class="text-xs text-gray-500 italic">vs Diesel Marítimo</span>
+                            </div>
+                        </div>
+                        <div class="h-64 relative">
+                            <canvas id="impactChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SIMULADOR -->
+    <section id="simulador" class="py-24 bg-deep-ocean text-white overflow-hidden relative">
+        <div class="absolute top-0 right-0 w-96 h-96 bg-green-primary/10 rounded-full blur-3xl -mr-48 -mt-48"></div>
+
+        <div class="max-w-4xl mx-auto px-6 relative z-10 text-center">
+            <h2 class="text-4xl font-heading font-bold mb-6 italic underline decoration-green-primary underline-offset-8">Simulador de Descarbonização</h2>
+            <p class="text-slate text-lg mb-12">Calcule o potencial de economia de carbono da sua operação ao migrar do diesel para o e-Metanol.</p>
+
+            <div class="glass-card p-10 rounded-3xl border-white/10 shadow-2xl">
+                <div class="mb-12">
+                    <div class="flex justify-between items-center mb-4">
+                        <label class="text-sm font-bold uppercase tracking-widest text-green-primary">Consumo Anual de Diesel</label>
+                        <span id="dieselValueDisplay" class="text-2xl font-heading font-bold">5.000 m³</span>
+                    </div>
+                    <input id="dieselRange" type="range" min="100" max="50000" step="100" value="5000" 
+                        class="w-full h-2 bg-deep-light rounded-lg appearance-none cursor-pointer accent-green-primary">
+                    <div class="flex justify-between text-[10px] text-slate mt-2 uppercase font-bold">
+                        <span>100 m³</span>
+                        <span>50.000 m³</span>
+                    </div>
+                </div>
+
+                <div class="grid sm:grid-cols-2 gap-6">
+                    <div class="bg-deep-light p-6 rounded-2xl border border-white/5">
+                        <span class="block text-xs text-slate uppercase mb-1">e-Metanol Necessário</span>
+                        <div class="flex items-baseline justify-center space-x-1">
+                            <span id="metanolRes" class="text-4xl font-heading font-extrabold text-white">0</span>
+                            <span class="text-sm text-slate">ton/ano</span>
+                        </div>
+                    </div>
+                    <div class="bg-green-primary/10 p-6 rounded-2xl border border-green-primary/20">
+                        <span class="block text-xs text-green-primary uppercase mb-1">CO₂ Evitado</span>
+                        <div class="flex items-baseline justify-center space-x-1">
+                            <span id="co2Res" class="text-4xl font-heading font-extrabold text-green-primary">0</span>
+                            <span class="text-sm text-green-primary/70">ton/ano</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- LLM FEATURE: ANALYSIS -->
+                <div class="mt-8 pt-8 border-t border-white/10 text-left">
+                    <button id="aiAnalyzeBtn" class="flex items-center space-x-2 text-green-primary font-bold hover:text-white transition-colors group">
+                        <span class="text-xl">✨</span>
+                        <span>Análise de Viabilidade Inteligente</span>
+                    </button>
+                    <div id="aiAnalysisResult" class="hidden mt-4 p-5 bg-white/5 rounded-xl text-sm leading-relaxed text-slate italic border-l-4 border-green-primary">
+                        <!-- AI content here -->
+                    </div>
+                </div>
+
+                <button class="mt-10 w-full py-4 bg-white text-deep-ocean font-bold rounded-xl hover:bg-green-primary hover:text-white transition-all shadow-xl shadow-black/20">
+                    Solicitar Relatório Completo (.PDF)
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- AI CHAT FLOATING ASSISTANT -->
+    <div id="chat-container" class="fixed bottom-6 right-6 z-[60] flex flex-col items-end">
+        <div id="chat-window" class="hidden w-80 sm:w-96 h-[500px] bg-white rounded-2xl shadow-2xl border border-gray-100 flex flex-col overflow-hidden mb-4 transition-all duration-300 transform translate-y-4 opacity-0">
+            <div class="bg-deep-ocean text-white p-4 flex justify-between items-center">
+                <div class="flex items-center space-x-2">
+                    <div class="w-2 h-2 bg-green-primary rounded-full animate-pulse"></div>
+                    <span class="font-bold text-sm">Assistente GreenMethanol</span>
+                </div>
+                <button id="close-chat" class="hover:text-green-primary transition-colors">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+                </button>
+            </div>
+            
+            <div id="chat-messages" class="flex-1 overflow-y-auto p-4 space-y-4 text-sm bg-slate-50">
+                <div class="bg-white p-3 rounded-2xl rounded-tl-none border border-gray-100 shadow-sm text-gray-700">
+                    Olá! Sou o especialista ✨ de IA da GreenMethanol. Como posso ajudar com dúvidas sobre descarbonização ou nossa tecnologia?
+                </div>
+            </div>
+
+            <div class="p-4 bg-white border-t border-gray-100 flex items-center space-x-2">
+                <input id="chat-input" type="text" placeholder="Pergunte algo..." class="flex-1 text-sm outline-none bg-gray-50 p-2.5 rounded-lg border border-gray-200 focus:border-green-primary">
+                <button id="send-chat" class="p-2.5 bg-green-primary text-white rounded-lg hover:bg-green-dark transition-colors">
+                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M10.894 2.553a1 1 0 00-1.788 0l-7 14a1 1 0 001.169 1.409l5-1.429A1 1 0 009 15.571V11a1 1 0 112 0v4.571a1 1 0 00.725.962l5 1.428a1 1 0 001.17-1.408l-7-14z"/></svg>
+                </button>
+            </div>
+        </div>
+
+        <button id="chat-toggle" class="w-16 h-16 bg-green-primary text-white rounded-full flex items-center justify-center shadow-2xl hover:scale-110 transition-transform cursor-pointer ai-border-pulse border-2">
+            <svg id="chat-icon" class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"/></svg>
+        </button>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="bg-white border-t border-gray-100 py-16">
+        <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-4 gap-12">
+            <div class="md:col-span-2 space-y-6">
+                <div class="flex items-center space-x-2">
+                    <div class="w-8 h-8 bg-green-primary rounded flex items-center justify-center text-white font-bold">GM</div>
+                    <span class="font-heading font-extrabold text-xl">Green<span class="text-green-primary">Methanol</span></span>
+                </div>
+                <p class="text-gray-500 max-w-sm">Acelerando a neutralidade de carbono global através da química sustentável e energia renovável aplicada.</p>
+            </div>
+            <div>
+                <h4 class="font-bold mb-6 uppercase text-xs tracking-widest text-gray-400">Navegação</h4>
+                <ul class="space-y-4 text-gray-600 font-medium">
+                    <li><a href="#tecnologia" class="hover:text-green-primary">Nossa Tecnologia</a></li>
+                    <li><a href="#dados" class="hover:text-green-primary">Dados ESG</a></li>
+                    <li><a href="#simulador" class="hover:text-green-primary">Assessment</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="font-bold mb-6 uppercase text-xs tracking-widest text-gray-400">Contato</h4>
+                <p class="text-gray-600 text-sm">contato@greenmethanol.energy<br>São Paulo, Brasil</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- SCRIPTS -->
+    <script>
+        const apiKey = ""; // Runtime provides the key
+
+        // --- SIMULATOR LOGIC ---
+        const range = document.getElementById('dieselRange');
+        const display = document.getElementById('dieselValueDisplay');
+        const metanolRes = document.getElementById('metanolRes');
+        const co2Res = document.getElementById('co2Res');
+
+        function updateSim() {
+            const val = parseInt(range.value);
+            display.textContent = val.toLocaleString('pt-BR') + ' m³';
+            const methanolTons = Math.round(val * 0.85 * 2.1);
+            const co2Saved = Math.round(val * 2.6 * 0.95);
+            metanolRes.textContent = methanolTons.toLocaleString('pt-BR');
+            co2Res.textContent = co2Saved.toLocaleString('pt-BR');
+        }
+
+        range.addEventListener('input', updateSim);
+        updateSim();
+
+        // --- GEMINI API INTEGRATION ---
+        async function callGemini(prompt, systemPrompt = "") {
+            const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-09-2025:generateContent?key=${apiKey}`;
+            
+            const payload = {
+                contents: [{ parts: [{ text: prompt }] }],
+                systemInstruction: { parts: [{ text: systemPrompt }] }
+            };
+
+            let delay = 1000;
+            for (let i = 0; i < 5; i++) {
+                try {
+                    const response = await fetch(url, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(payload)
+                    });
+                    if (!response.ok) throw new Error('API request failed');
+                    const data = await response.json();
+                    return data.candidates?.[0]?.content?.parts?.[0]?.text || "Desculpe, não consegui processar isso agora.";
+                } catch (error) {
+                    if (i === 4) throw error;
+                    await new Promise(r => setTimeout(r, delay));
+                    delay *= 2;
+                }
+            }
+        }
+
+        // Feature 1: Intelligence Analysis
+        const aiAnalyzeBtn = document.getElementById('aiAnalyzeBtn');
+        const aiAnalysisResult = document.getElementById('aiAnalysisResult');
+
+        aiAnalyzeBtn.addEventListener('click', async () => {
+            aiAnalyzeBtn.disabled = true;
+            aiAnalysisResult.classList.remove('hidden');
+            aiAnalysisResult.innerHTML = "Processando análise estratégica com Gemini...";
+
+            const diesel = range.value;
+            const co2 = co2Res.textContent;
+            
+            const prompt = `Analise os seguintes dados de uma frota/operação industrial:
+            Consumo de Diesel: ${diesel} m³/ano.
+            CO2 evitado com GreenMethanol: ${co2} toneladas/ano.
+            Forneça um parágrafo curto de insight estratégico sobre por que essa mudança é crítica para o ESG da empresa.`;
+
+            try {
+                const response = await callGemini(prompt, "Você é um consultor técnico sênior da GreenMethanol Solutions. Seja profissional, persuasivo e use terminologia técnica adequada em português.");
+                aiAnalysisResult.innerHTML = `<strong>Insight ✨:</strong> ${response}`;
+            } catch (e) {
+                aiAnalysisResult.innerHTML = "Ocorreu um erro na análise. Tente novamente em instantes.";
+            } finally {
+                aiAnalyzeBtn.disabled = false;
+            }
+        });
+
+        // Feature 2: Floating Chat Assistant
+        const chatToggle = document.getElementById('chat-toggle');
+        const chatWindow = document.getElementById('chat-window');
+        const closeChat = document.getElementById('close-chat');
+        const sendChat = document.getElementById('send-chat');
+        const chatInput = document.getElementById('chat-input');
+        const chatMessages = document.getElementById('chat-messages');
+
+        chatToggle.onclick = () => {
+            chatWindow.classList.toggle('hidden');
+            setTimeout(() => {
+                chatWindow.classList.toggle('opacity-0');
+                chatWindow.classList.toggle('translate-y-4');
+            }, 10);
+        };
+
+        closeChat.onclick = () => {
+            chatWindow.classList.add('opacity-0', 'translate-y-4');
+            setTimeout(() => chatWindow.classList.add('hidden'), 300);
+        };
+
+        async function handleChat() {
+            const msg = chatInput.value.trim();
+            if (!msg) return;
+
+            // Add user message
+            appendMessage(msg, 'user');
+            chatInput.value = '';
+
+            // Add loading state
+            const loadingId = 'msg-' + Date.now();
+            appendMessage('Digitando...', 'ai', loadingId);
+
+            try {
+                const sysPrompt = "Você é o Assistente Virtual da GreenMethanol Solutions. Especialista em energia renovável, captura de carbono e e-metanol. Responda de forma clara e educativa em português. Use emojis moderadamente.";
+                const response = await callGemini(msg, sysPrompt);
+                updateMessage(loadingId, response);
+            } catch (e) {
+                updateMessage(loadingId, "Erro de conexão. Por favor, tente novamente.");
+            }
+        }
+
+        function appendMessage(text, side, id = null) {
+            const div = document.createElement('div');
+            div.id = id;
+            div.className = side === 'user' 
+                ? 'bg-green-primary text-white p-3 rounded-2xl rounded-tr-none ml-8 shadow-sm'
+                : 'bg-white p-3 rounded-2xl rounded-tl-none border border-gray-100 shadow-sm text-gray-700 mr-8';
+            div.textContent = text;
+            chatMessages.appendChild(div);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+
+        function updateMessage(id, text) {
+            const div = document.getElementById(id);
+            if (div) div.textContent = text;
+        }
+
+        sendChat.onclick = handleChat;
+        chatInput.onkeypress = (e) => e.key === 'Enter' && handleChat();
+
+        // Chart Initialization (Standard from previous version)
+        const ctx = document.getElementById('impactChart').getContext('2d');
+        new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ['Diesel Marítimo', 'GNL (Gás)', 'Metanol Cinza', 'e-Metanol GMS'],
+                datasets: [{
+                    label: 'gCO2e/MJ',
+                    data: [89, 72, 95, 4],
+                    backgroundColor: ['#0A192F', '#172A45', '#CCD6F6', '#00B36E'],
+                    borderRadius: 8,
+                    barThickness: 40
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: { legend: { display: false } },
+                scales: { y: { beginAtZero: true }, x: { grid: { display: false } } }
+            }
+        });
+    </script>
+</body>
+</html>
